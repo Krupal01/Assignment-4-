@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddbookFragment"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fontFamily="sans-serif"
+        android:hint="Book Name"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/BookName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Author Name"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/AuthorName"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif"
+        android:id="@+id/Genration"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/radioGrp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ficRadio"
+            android:fontFamily="sans-serif"
+            android:text="fiction"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/nonficRadio"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:text="non-fiction"/>
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:text="select Date"
+        android:id="@+id/datePicker"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="Age Limit :"/>
+        <CheckBox
+            android:id="@+id/check3"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="100dp"
+            android:layout_above="@+id/check12"
+            android:text="3+" />
+
+        <CheckBox
+            android:id="@+id/check12"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/check18"
+            android:text="12+" />
+
+        <CheckBox
+            android:id="@+id/check18"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/check32"
+            android:text="18+" />
+
+        <CheckBox
+            android:id="@+id/check32"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/check52"
+            android:text="32+" />
+
+        <CheckBox
+            android:id="@+id/check52"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_alignParentBottom="true"
+            android:text="52+" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:id="@+id/AddBook"
+        android:text="Add Book"
+        android:paddingHorizontal="50dp"
+        android:textSize="15dp"
+        android:fontFamily="sans-serif"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        />
+
+
+</LinearLayout>

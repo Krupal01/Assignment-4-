@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".BookDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="BookName :"
+        android:padding="5dp"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:id="@+id/tvbookname"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="AuthorName :"
+        android:padding="5dp"
+        android:background="#DF5656"
+        android:textColor="@color/white"
+        android:id="@+id/tvauthorname"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:padding="5dp"
+        android:text="Generation :"
+        android:background="#DF5656"
+        android:textColor="@color/white"
+        android:id="@+id/tvgeneration"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:background="#DF5656"
+        android:padding="5dp"
+        android:text="Lunch Date :"
+        android:textColor="@color/white"
+        android:id="@+id/tvDate"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:background="#DF5656"
+        android:padding="5dp"
+        android:text="Type :"
+        android:textColor="@color/white"
+        android:id="@+id/tvfiction"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:background="#DF5656"
+        android:padding="5dp"
+        android:text="Age Limit :"
+        android:textColor="@color/white"
+        android:id="@+id/tvAgelimit"/>
+
+</LinearLayout>
