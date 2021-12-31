@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="Generation :"/>
+        <CheckBox
+            android:id="@+id/Filtercheck1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="100dp"
+            android:layout_above="@+id/Filtercheck2"
+            android:text="1st Generation" />
+
+        <CheckBox
+            android:id="@+id/Filtercheck2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/Filtercheck3"
+            android:text="2st Generation" />
+
+        <CheckBox
+            android:id="@+id/Filtercheck3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/Filtercheck4"
+            android:text="3st Generation" />
+
+        <CheckBox
+            android:id="@+id/Filtercheck4"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/Filtercheck5"
+            android:text="4st Generation" />
+
+
+        <CheckBox
+            android:id="@+id/Filtercheck5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_alignParentBottom="true"
+            android:text="5th Generation" />
+
+    </RelativeLayout>
+
+</LinearLayout>

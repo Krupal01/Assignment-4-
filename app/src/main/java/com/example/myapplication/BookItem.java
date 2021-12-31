@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class BookItem implements Serializable {
     String bookname,authorname,generation,fiction,date,ageLimit;
@@ -64,4 +65,30 @@ public class BookItem implements Serializable {
     public void setAgeLimit(String ageLimit) {
         this.ageLimit = ageLimit;
     }
+
+    public static Comparator<BookItem> BookNameComparator = new Comparator<BookItem>() {
+
+        public int compare(BookItem b1, BookItem b2)
+        {
+            String BookName1
+                    = b1.getBookname().toUpperCase();
+            String BookName2
+                    = b2.getBookname().toUpperCase();
+            return BookName1.compareTo(
+                    BookName2);
+        }
+    };
+
+    public static Comparator<BookItem> AuthorNameComparator = new Comparator<BookItem>() {
+
+        public int compare(BookItem b1, BookItem b2)
+        {
+            String AuthorName1
+                    = b1.getAuthorname().toUpperCase();
+            String AuthorName2
+                    = b2.getAuthorname().toUpperCase();
+            return AuthorName1.compareTo(
+                    AuthorName2);
+        }
+    };
 }

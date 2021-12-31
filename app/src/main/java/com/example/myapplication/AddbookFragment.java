@@ -85,7 +85,7 @@ public class AddbookFragment extends Fragment {
     public CheckBox ch3,ch12,ch18,ch32,ch52;
     public Button AddBook;
     private BooklistFragment booklistFragment = new BooklistFragment();
-    String[] genArray = { "1st gen", "2st gen", "3st gen", "4st gen", "5st gen","5th+ gen"};
+    String[] genArray = { "1st gen", "2nd gen", "3rd gen", "4th gen", "5th gen"};
     String gen,type,date1,limit = new String();
 
     @Override
@@ -161,16 +161,6 @@ public class AddbookFragment extends Fragment {
         AddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                radio
-//                int id = rbfiction.getCheckedRadioButtonId();
-//                try {
-//                    if(id !=-1){
-//                        RadioButton btn = view.findViewById(id);
-//                        type = (String) btn.getText();
-//                    }
-//                }catch (Exception ignored){}
-
 
                 //checkbox
                 if (ch3.isChecked()){limit+=ch3.getText().toString();}

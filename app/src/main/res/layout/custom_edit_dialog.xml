@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fontFamily="sans-serif"
+        android:hint="Book Name"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/editBookName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Author Name"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/editAuthorName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Genration (Ex: 1st gen)"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/editGenration"/>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/editradioGrp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/ficRadio"
+            android:fontFamily="sans-serif"
+            android:text="editfiction"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/editnonficRadio"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:text="non-fiction"/>
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Date (Ex: 1/1/2001)"
+        android:fontFamily="sans-serif"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:id="@+id/editdatePicker"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="Age Limit :"/>
+        <CheckBox
+            android:id="@+id/editcheck3"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="100dp"
+            android:layout_above="@+id/editcheck12"
+            android:text="3+" />
+
+        <CheckBox
+            android:id="@+id/editcheck12"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/editcheck18"
+            android:text="12+" />
+
+        <CheckBox
+            android:id="@+id/editcheck18"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/editcheck32"
+            android:text="18+" />
+
+        <CheckBox
+            android:id="@+id/editcheck32"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_above="@+id/editcheck52"
+            android:text="32+" />
+
+        <CheckBox
+            android:id="@+id/editcheck52"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:textSize="15dp"
+            android:fontFamily="sans-serif"
+            android:layout_alignParentBottom="true"
+            android:text="52+" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item android:title="Sort"
+        android:id="@+id/Sort"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_sort_by_alpha_24" >
+
+        <menu>
+            <item android:title="By BookName"
+                android:id="@+id/BookNameSort"/>
+            <item android:title="By AuthorName"
+                android:id="@+id/AuthorNameSort"/>
+        </menu>
+
+    </item>
+    <item android:title="Filter"
+        android:id="@+id/Filter"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_filter_alt_24">
+        <menu>
+            <item android:title="By Generation"
+                android:id="@+id/GenrationFilter"/>
+
+            <item android:title="By Type"
+                android:id="@+id/TypeFilter"/>
+
+        </menu>
+    </item>
+</menu>

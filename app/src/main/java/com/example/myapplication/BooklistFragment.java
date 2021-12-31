@@ -3,20 +3,41 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 /**
@@ -58,13 +79,18 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
     }
 
     private RecyclerView recyclerView;
-    public ArrayList<BookItem> booklist=new ArrayList<>();
+    public ArrayList<BookItem> booklist = new ArrayList<>() ;
     public BookAdapter adapter;
+    public String BookPref = "Book Pref";
+    public String BookKey = "Book Key";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        booklist.add(new BookItem("d","D","D","D","D","D"));
+
+        booklist.add(new BookItem("d","r","1st gen","fiction","12/12/2002","D"));
+        booklist.add(new BookItem("k","g","5th gen","fiction","12/12/2003","D"));
+        booklist.add(new BookItem("a","w","1th gen","non-fiction","12/8/2002","D"));
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -75,6 +101,7 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_booklist, container, false);
     }
 
@@ -93,15 +120,16 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
             }
             bundle.clear();
         }
-        catch (Exception ignored){ }
+        catch (Exception ignored){
 
-
+        }
 
         recyclerView = view.findViewById(R.id.BookRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter= new BookAdapter(this);
         adapter.setBooks(booklist);
         recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -117,6 +145,165 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                 .replace(R.id.mainActivity,bookDetailFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.book_list_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem searchItem = menu.findItem(R.id.actionSearch);
+
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+
+        });
+
+    }
+    private void filter(String text) {
+        ArrayList<BookItem> filteredlist = new ArrayList<>();
+
+        for ( BookItem item : booklist) {
+            if (item.getBookname().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+            else if (item.getAuthorname().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.setBooks(filteredlist);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        switch (item.getItemId()){
+            case R.id.BookNameSort:
+                Collections.sort(booklist,BookItem.BookNameComparator);
+                adapter.notifyDataSetChanged();
+                break;
+
+            case R.id.AuthorNameSort:
+                Collections.sort(booklist,BookItem.AuthorNameComparator);
+                adapter.notifyDataSetChanged();
+                break;
+
+            case R.id.GenrationFilter:
+                View view = inflater.inflate(R.layout.custom_generation_selection,null);
+                builder.setView(view);
+                CheckBox ch1gen = view.findViewById(R.id.Filtercheck1);
+                CheckBox ch2gen = view.findViewById(R.id.Filtercheck2);
+                CheckBox ch3gen = view.findViewById(R.id.Filtercheck3);
+                CheckBox ch4gen = view.findViewById(R.id.Filtercheck4);
+                CheckBox ch5gen = view.findViewById(R.id.Filtercheck5);
+
+                ArrayList<BookItem> newFilter = new ArrayList<>();
+                builder.setPositiveButton("Filter", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (ch1gen.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getGeneration().contains("1st")){ newFilter.add(b); }
+                            }
+                        }
+                        if (ch2gen.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getGeneration().contains("2nd")){ newFilter.add(b); }
+                            }
+                        }
+                        if (ch3gen.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getGeneration().contains("3rd")){ newFilter.add(b); }
+                            }
+                        }
+                        if (ch4gen.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getGeneration().contains("4th")){ newFilter.add(b); }
+                            }
+                        }
+                        if (ch5gen.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getGeneration().contains("5th")){ newFilter.add(b); }
+                            }
+                        }
+                        if ((!ch1gen.isChecked())&&(!ch2gen.isChecked())&&(!ch3gen.isChecked())&&(!ch4gen.isChecked())&&(!ch5gen.isChecked()))
+                        {
+                            for (BookItem b : booklist) {
+                                 newFilter.add(b);
+                            }
+                        }
+                        adapter.setBooks(newFilter);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+
+            case R.id.TypeFilter:
+                View view1 = inflater.inflate(R.layout.custom_type_selection,null);
+                builder.setView(view1);
+                builder.setPositiveButton("Filter", new DialogInterface.OnClickListener() {
+                    ArrayList<BookItem> newFilter1 = new ArrayList<>();
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        CheckBox chFiction = view1.findViewById(R.id.FilterFiction);
+                        CheckBox chNonFiction = view1.findViewById(R.id.FilterNonFiction);
+                        if(chFiction.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getFiction().equals("fiction")){ newFilter1.add(b); }
+                            }
+                        }
+                        if(chNonFiction.isChecked()){
+                            for (BookItem b : booklist) {
+                                if (b.getFiction().equals("non-fiction")){ newFilter1.add(b); }
+                            }
+                        }
+                        if ((!chFiction.isChecked())&&(!chNonFiction.isChecked())){
+                            for (BookItem b : booklist) {
+                                newFilter1.add(b);
+                            }
+                        }
+                        adapter.setBooks(newFilter1);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialog1 = builder.create();
+                dialog1.show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

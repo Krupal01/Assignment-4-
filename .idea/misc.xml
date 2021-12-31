@@ -12,10 +12,15 @@
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/activity_add_book.xml" value="0.19384057971014493" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/book_item.xml" value="0.19384057971014493" />
+        <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/custom_edit_dialog.xml" value="0.1703125" />
+        <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/custom_generation_selection.xml" value="0.33" />
+        <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/custom_type_selection.xml" value="0.1703125" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/fragment_addbook.xml" value="0.22" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/fragment_book_detail.xml" value="0.19384057971014493" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/fragment_booklist.xml" value="0.19010416666666666" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/layout/nav_header.xml" value="0.18" />
+        <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/menu/book_detail_menu.xml" value="0.1703125" />
+        <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/menu/book_list_menu.xml" value="0.18854166666666666" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/menu/navigation_drawer_item.xml" value="0.1" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/TatvaSoft/Assignment4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
