@@ -7,12 +7,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,13 +83,12 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
     private RecyclerView recyclerView;
     public ArrayList<BookItem> booklist = new ArrayList<>() ;
     public BookAdapter adapter;
-    public String BookPref = "Book Pref";
-    public String BookKey = "Book Key";
+    public Database db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        createBookDataList();
         booklist.add(new BookItem("d","r","1st gen","fiction","12/12/2002","D"));
         booklist.add(new BookItem("k","g","5th gen","fiction","12/12/2003","D"));
         booklist.add(new BookItem("a","w","1th gen","non-fiction","12/8/2002","D"));
@@ -102,8 +103,10 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
+        db = new Database(getContext(),"BookList",null,1);
         return inflater.inflate(R.layout.fragment_booklist, container, false);
     }
+
 
 
     
@@ -112,17 +115,7 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Book List");
 
-        try {
-            Bundle bundle = getArguments();
-            if(!bundle.isEmpty()) {
-                BookItem bookItem = (BookItem) bundle.getSerializable("Add");
-                booklist.add(bookItem);
-            }
-            bundle.clear();
-        }
-        catch (Exception ignored){
 
-        }
 
         recyclerView = view.findViewById(R.id.BookRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -132,7 +125,17 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
 
 
     }
+    public void createBookDataList() {
+        db = new Database(getContext(),"BookList",null,1);
+        Cursor getData = db.getData();
+        if (getData.getCount() == 0) {
+            Toast.makeText(getContext(), "No Books Right Now", Toast.LENGTH_SHORT).show();
 
+        }
+        while (getData.moveToNext()) {
+            booklist.add(new BookItem(getData.getInt(0), getData.getString(1), getData.getString(2), getData.getString(3), getData.getString(4), getData.getString(5), getData.getString(6)));
+        }
+    }
     @Override
     public void ClickListener(BookItem bookItem) {
         Bundle bundle = new Bundle();

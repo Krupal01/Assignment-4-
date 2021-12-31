@@ -98,6 +98,7 @@ public class BookDetailFragment extends Fragment {
     public TextView fiction ;
     public TextView agelimit;
     public BookItem bookItem;
+    public Database db;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -133,34 +134,33 @@ public class BookDetailFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        db = new Database(getContext(),"BookList",null,1);
         if(item.getItemId() == R.id.edit){
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater inflater = this.getLayoutInflater();
             View dialogView = inflater.inflate(R.layout.custom_edit_dialog, null);
             builder.setView(dialogView);
+            builder.setTitle(bookItem.bookname);
             builder.setPositiveButton("save", new DialogInterface.OnClickListener() {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    bookItem = EditDetail(dialogView);
-                    Toast.makeText(getContext(), bookItem.getBookname(), Toast.LENGTH_SHORT).show();
 
-//                    LayoutInflater inflater = getLayoutInflater();
-//                    View view  = inflater.inflate(R.layout.fragment_book_detail,null);
-//
-//                    TextView bookname = view.findViewById(R.id.tvbookname);
-//                    TextView authorname = view.findViewById(R.id.tvauthorname);
-//                    TextView generation = view.findViewById(R.id.tvgeneration);
-//                    TextView date = view.findViewById(R.id.tvDate);
-//                    TextView fiction = view.findViewById(R.id.tvfiction);
-//                    TextView agelimit = view.findViewById(R.id.tvAgelimit);
-//
-//                    bookname.setText("BookName : "+ newBookDetail.getBookname());
-//                    authorname.setText("AuthorName : "+newBookDetail.getAuthorname());
-//                    generation.setText("Generation : "+newBookDetail.getGeneration());
-//                    date.setText("Lunch Date : "+newBookDetail.getDate());
-//                    fiction.setText("Type : "+newBookDetail.getFiction());
-//                    agelimit.setText("Age Limit : "+newBookDetail.getAgeLimit());
+                    boolean Update = db.updateData(bookItem.bookname,
+                            EditDetail(dialogView).authorname,
+                            EditDetail(dialogView).generation,
+                            EditDetail(dialogView).fiction,
+                            EditDetail(dialogView).date,
+                            EditDetail(dialogView).ageLimit);
+                    if (Update){
+                        Toast.makeText(getContext(), "Update successful", Toast.LENGTH_SHORT).show();
+                    }
+
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.mainActivity,new BooklistFragment())
+                            .addToBackStack(null)
+                            .commit();
 
                 }
             });
@@ -180,7 +180,6 @@ public class BookDetailFragment extends Fragment {
     private BookItem EditDetail(View view) {
         BookItem newDetail = new BookItem();
 
-        EditText editbookname = view.findViewById(R.id.editBookName);
         EditText editauthorname = view.findViewById(R.id.editAuthorName);
         RadioGroup editrbfiction = view.findViewById(R.id.editradioGrp);
         CheckBox editch3 = view.findViewById(R.id.editcheck3);
@@ -209,7 +208,6 @@ public class BookDetailFragment extends Fragment {
         if (editch52.isChecked()){editlimit+=editch52.getText().toString();}
 
         newDetail.setGeneration(editgenration.getText().toString());
-        newDetail.setBookname(editbookname.getText().toString());
         newDetail.setAuthorname(editauthorname.getText().toString());
         newDetail.setDate(editdatePicker.getText().toString());
         newDetail.setAgeLimit(editlimit);

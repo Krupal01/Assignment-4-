@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,12 +89,13 @@ public class AddbookFragment extends Fragment {
     private BooklistFragment booklistFragment = new BooklistFragment();
     String[] genArray = { "1st gen", "2nd gen", "3rd gen", "4th gen", "5th gen"};
     String gen,type,date1,limit = new String();
+    public Database db;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Add Book");
-
+        db= new Database(getContext(),"BookList",null,1);
         AddBook = view.findViewById(R.id.AddBook);
         bookname = view.findViewById(R.id.BookName);
         authorname = view.findViewById(R.id.AuthorName);
@@ -171,18 +174,13 @@ public class AddbookFragment extends Fragment {
 
                 date1 = datePicker.getText().toString();
 
-                BookItem bookItem = new BookItem(
-                        bookname.getText().toString(),
+                db.insertData(bookname.getText().toString(),
                         authorname.getText().toString(),
                         gen,
                         type,
                         date1,
-                        limit
-                        );
+                        limit);
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Add",bookItem);
-                booklistFragment.setArguments(bundle);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.mainActivity,booklistFragment)
