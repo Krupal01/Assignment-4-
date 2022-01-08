@@ -9,14 +9,6 @@ public class BookItem implements Serializable {
     public BookItem() {
     }
 
-    public BookItem(String bookname, String authorname, String generation, String fiction, String date, String ageLimit) {
-        this.bookname = bookname;
-        this.authorname = authorname;
-        this.generation = generation;
-        this.fiction = fiction;
-        this.date = date;
-        this.ageLimit = ageLimit;
-    }
     public BookItem(int id ,String bookname, String authorname, String generation, String fiction, String date, String ageLimit) {
         this.bookname = bookname;
         this.authorname = authorname;

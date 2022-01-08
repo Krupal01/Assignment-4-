@@ -89,9 +89,8 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createBookDataList();
-        booklist.add(new BookItem("d","r","1st gen","fiction","12/12/2002","D"));
-        booklist.add(new BookItem("k","g","5th gen","fiction","12/12/2003","D"));
-        booklist.add(new BookItem("a","w","1th gen","non-fiction","12/8/2002","D"));
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -224,27 +223,27 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (ch1gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("1st")){ newFilter.add(b); }
+                                if (b.getGeneration().contains("1st")&& b.getGeneration()!=null ){ newFilter.add(b); }
                             }
                         }
                         if (ch2gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("2nd")){ newFilter.add(b); }
+                                if (b.getGeneration().contains("2nd") && b.getGeneration()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch3gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("3rd")){ newFilter.add(b); }
+                                if (b.getGeneration().contains("3rd") && b.getGeneration()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch4gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("4th")){ newFilter.add(b); }
+                                if (b.getGeneration().contains("4th") && b.getGeneration()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch5gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("5th")){ newFilter.add(b); }
+                                if (b.getGeneration().contains("5th") && b.getGeneration()!=null){ newFilter.add(b); }
                             }
                         }
                         if ((!ch1gen.isChecked())&&(!ch2gen.isChecked())&&(!ch3gen.isChecked())&&(!ch4gen.isChecked())&&(!ch5gen.isChecked()))
@@ -278,12 +277,12 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                         CheckBox chNonFiction = view1.findViewById(R.id.FilterNonFiction);
                         if(chFiction.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getFiction().equals("fiction")){ newFilter1.add(b); }
+                                if (b.getFiction().equals("fiction") && b.getFiction()!=null){ newFilter1.add(b); }
                             }
                         }
                         if(chNonFiction.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getFiction().equals("non-fiction")){ newFilter1.add(b); }
+                                if (b.getFiction().equals("non-fiction") && b.getFiction()!=null){ newFilter1.add(b); }
                             }
                         }
                         if ((!chFiction.isChecked())&&(!chNonFiction.isChecked())){

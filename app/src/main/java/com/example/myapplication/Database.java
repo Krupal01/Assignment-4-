@@ -20,7 +20,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create Table BookListNew(bookId NUMBER,bookName TEXT,bookAuthorName TEXT,genre TEXT,bookType TEXT,launchDate TEXT,agePrefer TEXT )");
+        sqLiteDatabase.execSQL("create Table BookListNew(bookId NUMBER,bookName TEXT,bookAuthorName TEXT,gen TEXT,bookType TEXT,launchDate TEXT,age TEXT )");
     }
 
     @Override
@@ -28,17 +28,17 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public Boolean insertData(String bookName,String bookAuthorName,String genre,String bookType,String launchDate,String agePrefer){
+    public Boolean insertData(String bookName,String bookAuthorName,String gen,String bookType,String launchDate,String age){
         SQLiteDatabase DB=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("bookId",id);
         id=id+1;
         contentValues.put("bookName",bookName);
         contentValues.put("bookAuthorName",bookAuthorName);
-        contentValues.put("genre",genre);
+        contentValues.put("gen",gen);
         contentValues.put("bookType",bookType);
         contentValues.put("launchDate",launchDate);
-        contentValues.put("agePrefer",agePrefer);
+        contentValues.put("age",age);
         long result=DB.insert("BookListNew",null,contentValues);
         return result != -1;
     }
@@ -47,21 +47,16 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase Db=this.getWritableDatabase();
         return Db.rawQuery("Select * from BookListNew",null);
     }
-    public Cursor getDataBookName(int id)
-    {
-        SQLiteDatabase Db=this.getWritableDatabase();
 
-        return Db.rawQuery("select * from BookListNew Where bookId=?",new String[]{String.valueOf(id)}); }
-
-    public Boolean updateData(String bookName,String bookAuthorName,String genre,String bookType,String launchDate,String agePrefer){
+    public Boolean updateData(String bookName,String bookAuthorName,String gen,String bookType,String launchDate,String age){
         SQLiteDatabase DB=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
 //        contentValues.put("bookName",bookName);
         contentValues.put("bookAuthorName",bookAuthorName);
-        contentValues.put("genre",genre);
+        contentValues.put("gen",gen);
         contentValues.put("bookType",bookType);
         contentValues.put("launchDate",launchDate);
-        contentValues.put("agePrefer",agePrefer);
+        contentValues.put("age",age);
         long result=DB.update("BookListNew",contentValues, "bookName=?", new String[]{bookName});
         return result != -1;
     }

@@ -91,12 +91,6 @@ public class BookDetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_book_detail, container, false);
     }
 
-    public TextView bookname ;
-    public TextView authorname ;
-    public TextView generation ;
-    public TextView date ;
-    public TextView fiction ;
-    public TextView agelimit;
     public BookItem bookItem;
     public Database db;
     @Override
