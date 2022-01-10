@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 public class BookItem implements Serializable {
-    String bookname,authorname,generation,fiction,date,ageLimit;
+    String bookname,authorname,genre,fiction,date,ageLimit;
 
     public BookItem() {
     }
 
-    public BookItem(int id ,String bookname, String authorname, String generation, String fiction, String date, String ageLimit) {
+    public BookItem(int id ,String bookname, String authorname, String genre, String fiction, String date, String ageLimit) {
         this.bookname = bookname;
         this.authorname = authorname;
-        this.generation = generation;
+        this.genre = genre;
         this.fiction = fiction;
         this.date = date;
         this.ageLimit = ageLimit;
@@ -26,9 +26,7 @@ public class BookItem implements Serializable {
         return authorname;
     }
 
-    public String getGeneration() {
-        return generation;
-    }
+
 
     public String getFiction() {
         return fiction;
@@ -50,8 +48,12 @@ public class BookItem implements Serializable {
         this.authorname = authorname;
     }
 
-    public void setGeneration(String generation) {
-        this.generation = generation;
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public void setFiction(String fiction) {

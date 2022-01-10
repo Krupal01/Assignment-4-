@@ -43,7 +43,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         BookItem bookItem = Books.get(position);
         holder.bookname.setText(bookItem.getBookname());
         holder.authorname.setText(bookItem.getAuthorname());
-        holder.generation.setText(bookItem.getGeneration());
+        holder.genre.setText(bookItem.getGenre());
 
         holder.itemView.setOnClickListener(view -> listener.ClickListener(bookItem));
     }
@@ -56,12 +56,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public class BookViewHolder extends RecyclerView.ViewHolder {
         private final TextView bookname;
         private final TextView authorname;
-        private final TextView generation;
+        private final TextView genre;
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             bookname = itemView.findViewById(R.id.bookNameItem);
             authorname = itemView.findViewById(R.id.authorNameItem);
-            generation = itemView.findViewById(R.id.generationItem);
+            genre = itemView.findViewById(R.id.genreItem);
         }
     }
 }

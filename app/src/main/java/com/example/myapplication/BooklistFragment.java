@@ -1,12 +1,8 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -14,12 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,19 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
-import android.widget.Switch;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -208,8 +192,8 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                 adapter.notifyDataSetChanged();
                 break;
 
-            case R.id.GenrationFilter:
-                View view = inflater.inflate(R.layout.custom_generation_selection,null);
+            case R.id.GenreFilter:
+                View view = inflater.inflate(R.layout.custom_genre_selection,null);
                 builder.setView(view);
                 CheckBox ch1gen = view.findViewById(R.id.Filtercheck1);
                 CheckBox ch2gen = view.findViewById(R.id.Filtercheck2);
@@ -223,27 +207,27 @@ public class BooklistFragment extends Fragment implements BookAdapter.ClickListe
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (ch1gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("1st")&& b.getGeneration()!=null ){ newFilter.add(b); }
+                                if (b.getGenre().contains("Action and adventure")&& b.getGenre()!=null ){ newFilter.add(b); }
                             }
                         }
                         if (ch2gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("2nd") && b.getGeneration()!=null){ newFilter.add(b); }
+                                if (b.getGenre().contains("Crime") && b.getGenre()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch3gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("3rd") && b.getGeneration()!=null){ newFilter.add(b); }
+                                if (b.getGenre().contains("Drama") && b.getGenre()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch4gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("4th") && b.getGeneration()!=null){ newFilter.add(b); }
+                                if (b.getGenre().contains("Historical") && b.getGenre()!=null){ newFilter.add(b); }
                             }
                         }
                         if (ch5gen.isChecked()){
                             for (BookItem b : booklist) {
-                                if (b.getGeneration().contains("5th") && b.getGeneration()!=null){ newFilter.add(b); }
+                                if (b.getGenre().contains("Horror") && b.getGenre()!=null){ newFilter.add(b); }
                             }
                         }
                         if ((!ch1gen.isChecked())&&(!ch2gen.isChecked())&&(!ch3gen.isChecked())&&(!ch4gen.isChecked())&&(!ch5gen.isChecked()))

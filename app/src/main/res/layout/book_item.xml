@@ -30,7 +30,7 @@
         android:textSize="15sp"
         android:background="#DF5656"
         android:paddingLeft="5dp"
-        android:id="@+id/generationItem"
+        android:id="@+id/genreItem"
         android:textColor="@color/white"/>
 
 </LinearLayout>

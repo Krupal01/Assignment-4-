@@ -107,14 +107,14 @@ public class BookDetailFragment extends Fragment {
 
         TextView bookname = view.findViewById(R.id.tvbookname);
         TextView authorname = view.findViewById(R.id.tvauthorname);
-        TextView generation = view.findViewById(R.id.tvgeneration);
+        TextView genre = view.findViewById(R.id.tvgenre);
         TextView date = view.findViewById(R.id.tvDate);
         TextView fiction = view.findViewById(R.id.tvfiction);
         TextView agelimit = view.findViewById(R.id.tvAgelimit);
 
         bookname.setText(bookname.getText() +" "+ bookItem.getBookname());
         authorname.setText(authorname.getText()+" "+bookItem.getAuthorname());
-        generation.setText(generation.getText()+" "+bookItem.getGeneration());
+        genre.setText(genre.getText()+" "+bookItem.getGenre());
         date.setText(date.getText()+" "+bookItem.getDate());
         fiction.setText(fiction.getText()+" "+bookItem.getFiction());
         agelimit.setText(agelimit.getText()+" "+bookItem.getAgeLimit());
@@ -142,7 +142,7 @@ public class BookDetailFragment extends Fragment {
 
                     boolean Update = db.updateData(bookItem.bookname,
                             EditDetail(dialogView).authorname,
-                            EditDetail(dialogView).generation,
+                            EditDetail(dialogView).genre,
                             EditDetail(dialogView).fiction,
                             EditDetail(dialogView).date,
                             EditDetail(dialogView).ageLimit);
@@ -176,13 +176,27 @@ public class BookDetailFragment extends Fragment {
 
         EditText editauthorname = view.findViewById(R.id.editAuthorName);
         RadioGroup editrbfiction = view.findViewById(R.id.editradioGrp);
+        RadioButton ficRadio = view.findViewById(R.id.editficRadio);
+        RadioButton nonficRadio = view.findViewById(R.id.editnonficRadio);
         CheckBox editch3 = view.findViewById(R.id.editcheck3);
         CheckBox editch12 = view.findViewById(R.id.editcheck12);
         CheckBox editch18 = view.findViewById(R.id.editcheck18);
         CheckBox editch32 = view.findViewById(R.id.editcheck32);
         CheckBox editch52 = view.findViewById(R.id.editcheck52);
         EditText editdatePicker = view.findViewById(R.id.editdatePicker);
-        EditText editgenration = view.findViewById(R.id.editGenration);
+        EditText editgenre = view.findViewById(R.id.editGenre);
+
+        editauthorname.setText(bookItem.getAuthorname());
+        editgenre.setText(bookItem.getGenre());
+        editdatePicker.setText(bookItem.getDate());
+
+        if (bookItem.getFiction().equals("fiction")){
+            ficRadio.setChecked(true);
+        }else {
+            nonficRadio.setChecked(true);
+        }
+
+
 
         //radiobutton
         editrbfiction.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -201,7 +215,7 @@ public class BookDetailFragment extends Fragment {
         if (editch32.isChecked()){editlimit+=editch32.getText().toString();}
         if (editch52.isChecked()){editlimit+=editch52.getText().toString();}
 
-        newDetail.setGeneration(editgenration.getText().toString());
+        newDetail.setGenre(editgenre.getText().toString());
         newDetail.setAuthorname(editauthorname.getText().toString());
         newDetail.setDate(editdatePicker.getText().toString());
         newDetail.setAgeLimit(editlimit);

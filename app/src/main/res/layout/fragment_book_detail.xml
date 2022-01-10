@@ -31,10 +31,10 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:padding="5dp"
-        android:text="Generation :"
+        android:text="Genre :"
         android:background="#DF5656"
         android:textColor="@color/white"
-        android:id="@+id/tvgeneration"/>
+        android:id="@+id/tvgenre"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

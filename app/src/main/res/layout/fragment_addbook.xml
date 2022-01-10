@@ -31,7 +31,7 @@
         android:layout_height="40dp"
         android:textSize="15dp"
         android:fontFamily="sans-serif"
-        android:id="@+id/Genration"/>
+        android:id="@+id/Genre"/>
 
     <RadioGroup
         android:layout_width="match_parent"

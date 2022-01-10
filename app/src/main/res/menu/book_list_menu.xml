@@ -26,8 +26,8 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_filter_alt_24">
         <menu>
-            <item android:title="By Generation"
-                android:id="@+id/GenrationFilter"/>
+            <item android:title="By Genre"
+                android:id="@+id/GenreFilter"/>
 
             <item android:title="By Type"
                 android:id="@+id/TypeFilter"/>

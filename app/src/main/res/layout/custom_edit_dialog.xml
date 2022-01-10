@@ -18,11 +18,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="Genration (Ex: 1st gen)"
+        android:hint="Genre (Ex: Horror)"
         android:fontFamily="sans-serif"
         android:textSize="15dp"
         android:textColor="@color/black"
-        android:id="@+id/editGenration"/>
+        android:id="@+id/editGenre"/>
 
 
     <RadioGroup

@@ -14,7 +14,7 @@
             android:textSize="15dp"
             android:textColor="@color/black"
             android:fontFamily="sans-serif"
-            android:text="Generation :"/>
+            android:text="Genre :"/>
         <CheckBox
             android:id="@+id/Filtercheck1"
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:fontFamily="sans-serif"
             android:layout_marginLeft="100dp"
             android:layout_above="@+id/Filtercheck2"
-            android:text="1st Generation" />
+            android:text="Action and adventure" />
 
         <CheckBox
             android:id="@+id/Filtercheck2"
@@ -33,7 +33,7 @@
             android:textSize="15dp"
             android:fontFamily="sans-serif"
             android:layout_above="@+id/Filtercheck3"
-            android:text="2st Generation" />
+            android:text="Crime" />
 
         <CheckBox
             android:id="@+id/Filtercheck3"
@@ -43,7 +43,7 @@
             android:textSize="15dp"
             android:fontFamily="sans-serif"
             android:layout_above="@+id/Filtercheck4"
-            android:text="3st Generation" />
+            android:text="Drama" />
 
         <CheckBox
             android:id="@+id/Filtercheck4"
@@ -53,7 +53,7 @@
             android:textSize="15dp"
             android:fontFamily="sans-serif"
             android:layout_above="@+id/Filtercheck5"
-            android:text="4st Generation" />
+            android:text="Historical" />
 
 
         <CheckBox
@@ -64,7 +64,7 @@
             android:textSize="15dp"
             android:fontFamily="sans-serif"
             android:layout_alignParentBottom="true"
-            android:text="5th Generation" />
+            android:text="Horror" />
 
     </RelativeLayout>
 

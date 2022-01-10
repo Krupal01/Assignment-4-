@@ -20,7 +20,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create Table BookListNew(bookId NUMBER,bookName TEXT,bookAuthorName TEXT,gen TEXT,bookType TEXT,launchDate TEXT,age TEXT )");
+        sqLiteDatabase.execSQL("create Table BookListNew(bookId NUMBER,bookName TEXT,bookAuthorName TEXT,genre TEXT,bookType TEXT,launchDate TEXT,age TEXT )");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Database extends SQLiteOpenHelper {
         id=id+1;
         contentValues.put("bookName",bookName);
         contentValues.put("bookAuthorName",bookAuthorName);
-        contentValues.put("gen",gen);
+        contentValues.put("genre",gen);
         contentValues.put("bookType",bookType);
         contentValues.put("launchDate",launchDate);
         contentValues.put("age",age);
@@ -53,7 +53,7 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentValues=new ContentValues();
 //        contentValues.put("bookName",bookName);
         contentValues.put("bookAuthorName",bookAuthorName);
-        contentValues.put("gen",gen);
+        contentValues.put("genre",gen);
         contentValues.put("bookType",bookType);
         contentValues.put("launchDate",launchDate);
         contentValues.put("age",age);

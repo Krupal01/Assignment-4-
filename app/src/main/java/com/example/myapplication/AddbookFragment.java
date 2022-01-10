@@ -81,14 +81,14 @@ public class AddbookFragment extends Fragment {
     }
 
     public EditText bookname,authorname;
-    public Spinner genration;
+    public Spinner genre;
     public Button datePicker;
     public RadioGroup rbfiction;
     public CheckBox ch3,ch12,ch18,ch32,ch52;
     public Button AddBook;
     private BooklistFragment booklistFragment = new BooklistFragment();
-    String[] genArray = { "1st gen", "2nd gen", "3rd gen", "4th gen", "5th gen"};
-    String gen,type,date1,limit = new String();
+    String[] genArray = { "Action and adventure", "Crime", "Drama", "Historical", "Horror"};
+    String gen,type="",date1="",limit=new String();
     public Database db;
 
     @Override
@@ -108,12 +108,12 @@ public class AddbookFragment extends Fragment {
         datePicker = view.findViewById(R.id.datePicker);
 
         //spinner
-        genration = view.findViewById(R.id.Genration);
+        genre = view.findViewById(R.id.Genre);
         ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,genArray);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        genration.setAdapter(aa);
+        genre.setAdapter(aa);
 
-        genration.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        genre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 gen = genArray[i];
@@ -121,7 +121,7 @@ public class AddbookFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                gen = genArray[0];
             }
         });
 
@@ -173,20 +173,20 @@ public class AddbookFragment extends Fragment {
                 if (ch52.isChecked()){limit+=ch52.getText().toString();}
 
                 date1 = datePicker.getText().toString();
+                String bName = bookname.getText().toString();
+                String aName = authorname.getText().toString();
 
-                db.insertData(bookname.getText().toString(),
-                        authorname.getText().toString(),
-                        gen,
-                        type,
-                        date1,
-                        limit);
-
+                if (!bName.isEmpty() && !aName.isEmpty() && !gen.isEmpty() && !type.isEmpty() && !date1.isEmpty() && !limit.isEmpty()){
+                db.insertData(bName, aName, gen, type, date1, limit);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.mainActivity,booklistFragment)
                         .commit();
-
                 Toast.makeText(getContext(), "Added sucessfully", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getContext(), "Any field are empty", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
