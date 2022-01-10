@@ -133,6 +133,7 @@ public class BookDetailFragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater inflater = this.getLayoutInflater();
             View dialogView = inflater.inflate(R.layout.custom_edit_dialog, null);
+            setEditView(dialogView);
             builder.setView(dialogView);
             builder.setTitle(bookItem.bookname);
             builder.setPositiveButton("save", new DialogInterface.OnClickListener() {
@@ -171,11 +172,8 @@ public class BookDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private BookItem EditDetail(View view) {
-        BookItem newDetail = new BookItem();
-
+    private void setEditView(View view) {
         EditText editauthorname = view.findViewById(R.id.editAuthorName);
-        RadioGroup editrbfiction = view.findViewById(R.id.editradioGrp);
         RadioButton ficRadio = view.findViewById(R.id.editficRadio);
         RadioButton nonficRadio = view.findViewById(R.id.editnonficRadio);
         CheckBox editch3 = view.findViewById(R.id.editcheck3);
@@ -195,8 +193,28 @@ public class BookDetailFragment extends Fragment {
         }else {
             nonficRadio.setChecked(true);
         }
+        String age = bookItem.getAgeLimit();
+        if (age.contains("3")){editch3.setChecked(true);}
+        if (age.contains("12")){editch12.setChecked(true);}
+        if (age.contains("18")){editch18.setChecked(true);}
+        if (age.contains("32")){editch32.setChecked(true);}
+        if (age.contains("52")){editch52.setChecked(true);}
 
 
+    }
+
+    private BookItem EditDetail(View view) {
+        BookItem newDetail = new BookItem();
+
+        EditText editauthorname = view.findViewById(R.id.editAuthorName);
+        RadioGroup editrbfiction = view.findViewById(R.id.editradioGrp);
+        CheckBox editch3 = view.findViewById(R.id.editcheck3);
+        CheckBox editch12 = view.findViewById(R.id.editcheck12);
+        CheckBox editch18 = view.findViewById(R.id.editcheck18);
+        CheckBox editch32 = view.findViewById(R.id.editcheck32);
+        CheckBox editch52 = view.findViewById(R.id.editcheck52);
+        EditText editdatePicker = view.findViewById(R.id.editdatePicker);
+        EditText editgenre = view.findViewById(R.id.editGenre);
 
         //radiobutton
         editrbfiction.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
